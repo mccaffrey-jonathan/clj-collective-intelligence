@@ -1,6 +1,7 @@
 (ns chap-1.recommendations
   (:use clojure.test
-        midje.sweet)
+        midje.sweet
+        utils.misc)
   (:require [clojure.set]))
 
 (def critics 
@@ -50,12 +51,6 @@
       "Snakes on a Plane" 4.5,
       "You, Me and Dupree" 1.0,
       "Superman Returns" 4.0 }})
-
-(defmacro ?
-  [val]
-  `(let [x# ~val]
-      (prn '~val '~'is x#)
-      x#))
 
 (def keys-set
   (comp set keys))
@@ -134,6 +129,16 @@
                 (/ (* sum-pref1 sum-pref2)
                    n))
              den))))))
+
+(defn tanimoto-similarity
+  "Returns the tanimoto similarity; the number of common items 
+  divided by the total number of items between the 2 score maps. Useful
+  for binary vectors like Users who follow Topics"
+  [scores1 scores2]
+  (let [ks1 (set (keys scores1))
+        ks2 (set (keys score2))]
+  (/ (count clojure.set/intersection ks1 ks2)
+     (count clojure.set/union ks1 ks2))))
 
 (defn top-matches
   "Take a map of score maps and a key and return the other keys with the most
