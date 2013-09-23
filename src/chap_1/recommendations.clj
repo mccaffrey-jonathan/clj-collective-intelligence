@@ -55,12 +55,6 @@
 (def keys-set
   (comp set keys))
 
-(def sum
-  (partial reduce + 0))
-
-(defn square [x]
-  (* x x))
-
 (defn mutually-rated
   "filter out items in both score maps"
   [scores1 scores2]
@@ -136,9 +130,9 @@
   for binary vectors like Users who follow Topics"
   [scores1 scores2]
   (let [ks1 (set (keys scores1))
-        ks2 (set (keys score2))]
-  (/ (count clojure.set/intersection ks1 ks2)
-     (count clojure.set/union ks1 ks2))))
+        ks2 (set (keys scores2))]
+  (/ (count (clojure.set/intersection ks1 ks2))
+     (count (clojure.set/union ks1 ks2)))))
 
 (defn top-matches
   "Take a map of score maps and a key and return the other keys with the most

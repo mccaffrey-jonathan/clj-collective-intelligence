@@ -38,7 +38,7 @@
   (map (comp first vals)
        (clojure.set/project (get-popular tag n) ["u"])))
 
-(facts
+(facts :slow
   (fact "we can control the returned count"
         (count (get-popular "programming" 1)) => 1)
   (fact "we can project out fields from the array of maps"
@@ -62,7 +62,7 @@
   (map (comp first vals)
        (clojure.set/project (get-popular-posts tag) ["a"])))
 
-(fact "we can look up many posts about a topic"
+(fact :slow "we can look up many posts about a topic"
       (every? #(some #{"programming"} (% "t")) 
               (get-popular-posts "programming")) => true)
 
