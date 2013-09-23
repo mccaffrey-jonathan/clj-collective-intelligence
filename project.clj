@@ -1,6 +1,16 @@
 (defproject clj-collective-intelligence "0.1.0-SNAPSHOT"
   :plugins [[lein-midje "3.0.0"]]
   :source-paths ["src"]
-  :dependencies [[midje "1.5.1"] 
+  :dependencies [[prismatic/schema "0.1.3"]
+                 [org.clojure/data.json "0.2.3"]
+                 [org.jsoup/jsoup "1.7.1"]
+                 [enlive "1.1.4"]
+                 [org.clojars.scsibug/feedparser-clj "0.4.0"]
+                 [digest "1.4.3"] 
+                 [rate-gate "1.3.1"]
+                 [clojurewerkz/urly "1.0.0"]
+                 [clj-http "0.7.6"]
+                 [org.clojure/data.json "0.2.3"]
+                 [midje "1.5.1"] 
                  [org.clojure/clojure "1.4.0"]
                  [org.clojure/tools.nrepl "0.2.3"]])
