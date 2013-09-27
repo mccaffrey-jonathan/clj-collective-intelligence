@@ -1,13 +1,17 @@
 (ns utils.misc)
 
 (defn ->?
-  [val tag]
-  (prn tag " is " val)
-  val)
+  ([val]
+   (->? val "->?"))
+  ([val tag]
+   (println tag " is " val)
+   val))
 
 (defn ->>?
-  [tag val]
-  (->? val tag))
+  ([val]
+   (->>? "->>?" val))
+  ([tag val]
+   (->? val tag)))
 
 (defn ->?-fn
   [inner-fn tag & {:keys [args-only]
@@ -15,8 +19,8 @@
   (fn [& args]
     (let [res (apply inner-fn args)]
       (if args-only
-        (prn "(" inner-fn args ") called")
-        (prn "(" inner-fn args ") is " res))
+        (println "(" inner-fn args ") called")
+        (println "(" inner-fn args ") is " res))
       res)))
 
 (defn ->>?-fn
@@ -26,7 +30,7 @@
 (defmacro ?
   [val]
   `(let [x# ~val]
-      (prn '~val '~'is x#)
+      (println '~val '~'is x#)
       x#))
 
 (def sum
