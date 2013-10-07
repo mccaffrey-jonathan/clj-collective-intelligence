@@ -12,6 +12,17 @@
     [net.cgrand.enlive-html :as html]
     [feedparser-clj.core]))
 
+(def small-feed-list
+  ["http://blog.guykawasaki.com/index.rdf"
+   "http://feeds.searchenginewatch.com/sewblog"
+   "http://www.boingboing.net/index.rdf"
+   "http://feeds.feedburner.com/37signals/beMH"
+   "http://www.engadget.com/rss.xml"
+   "http://feeds.dailykos.com/dailykos/index.xml"
+   "http://thinkprogress.org/feed/"
+   "http://www.lifehack.org/feed/"
+   "http://www.456bereastreet.com/feed.xml"])
+
 (def feed-list ; from http://kiwitobes.com/clusters/feedlist.txt
   ["http://feeds.feedburner.com/37signals/beMH"
    "http://feeds.feedburner.com/blogspot/bRuz"
@@ -234,8 +245,11 @@
   "Load previously stored blog data"
   [& {:keys [blog-data-path]
       :or {blog-data-path "res/blogdata.json"}}]
-  (with-open [r (java.io.FileReader. blog-data-path)] (json/read r)))
+  (with-open [r (java.io.FileReader. blog-data-path)] 
+      (json/read r)))
 
 ; (generate-and-write-blog-data )
-
+; (generate-and-write-blog-data
+;   :blog-data-path "res/small_blogdata.json"
+;   :feeds small-feed-list)
 

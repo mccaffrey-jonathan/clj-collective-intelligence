@@ -2,7 +2,7 @@
   :plugins [[lein-midje "3.0.0"]]
   :source-paths ["src"]
   :dependencies [[prismatic/schema "0.1.3"]
-                 [org.clojure/data.json "0.2.3"]
+                 [honeysql "0.4.2"]
                  [org.jsoup/jsoup "1.7.1"]
                  [enlive "1.1.4"]
                  [org.clojars.scsibug/feedparser-clj "0.4.0"]

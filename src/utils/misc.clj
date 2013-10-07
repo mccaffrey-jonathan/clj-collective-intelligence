@@ -38,3 +38,9 @@
 
 (defn square [x]
   (* x x))
+
+(defn pointwise-sum [x y]
+  (map + x y))
+
+(defn divide-by [s]
+  (fn [x] (/ x s)))
