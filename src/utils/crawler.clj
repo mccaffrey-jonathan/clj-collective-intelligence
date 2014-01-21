@@ -29,6 +29,8 @@
       (urly/resolve (.toString (urly/url-like "www.google.com")) "/search") =>
       "http://www.google.com/search")
 
+(def +debug-prints+ true)
+
 (defn clean-up-url
   "Clean up a url for crawling found within a page.
   Make it absolute and remove any fragment"
@@ -104,6 +106,7 @@
                    Jsoup/parse)
           links (links-from-soup body)
           new-visited-urls (conj visited-urls url) ]
+      (if +debug-prints+ (println "incremental-crawl is " url))
       [{:visited-urls new-visited-urls
         :url-queue (concat
                      url-queue
@@ -118,6 +121,7 @@
   "Crawler that produces a lazy sequence of accessed pages"
   [urls & {:keys [max-depth visited-urls]
            :or {max-depth 2 visited-urls #{}}}]
+  (if +debug-prints+ (println "crawl is " urls))
   (let [red (reductions incremental-crawl
                         [{:visited-urls visited-urls
                          :url-queue []} nil] urls)
